@@ -13,6 +13,7 @@
 
 package org.camunda.bpm.example.rating.service.rs;
 
+import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -21,11 +22,17 @@ import javax.ws.rs.core.MediaType;
 /**
  * @author Sebastian Menski
  */
-@Path("/lowestRating")
+@Path("/customer-ratings")
 public class CustomerRatingResource {
 
   @POST
+  @Path("create")
   @Consumes(MediaType.APPLICATION_JSON)
-  public void lowestRating(RequestDto request) {
+  public String saveCustomerRatings(List<RatingDto> ratings) {
+    for (RatingDto rating : ratings) {
+      System.out.println("Received customer rating for '" + rating.getCustomerId() + "' with rating '" + rating.getRating() + "'");
+    }
+    return "OK";
   }
+
 }

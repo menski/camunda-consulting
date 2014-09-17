@@ -16,7 +16,7 @@ package org.camunda.bpm.example.rating.service.rs;
 /**
  * @author Sebastian Menski
  */
-public class RequestDto {
+public class RatingDto {
 
   protected String customerId;
   protected Float rating;

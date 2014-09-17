@@ -28,8 +28,8 @@ public class CustomerRatingService {
 
   @WebMethod
   public CustomerRatingResponse provideCustomerRating(CustomerRatingRequest customerRatingRequest) {
-    Random random = new Random(100);
-    float nextFloat = random.nextFloat();
+    Random random = new Random();
+    float nextFloat = random.nextFloat() * 100;
     return new CustomerRatingResponse(customerRatingRequest.getCustomerId(), nextFloat);
   }
 

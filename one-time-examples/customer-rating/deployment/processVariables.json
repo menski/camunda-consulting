@@ -1,0 +1,21 @@
+{
+  "customers": {
+    "type": "String",
+    "value":
+    "<customers>
+      <customer id=\"customer1\">
+        <name>Kermit</name>
+        <contractStartDate>1354539722</contractStartDate>
+      </customer>
+      <customer id=\"customer2\">
+        <name>Waldo</name>
+        <contractStartDate>1320325322</contractStartDate>
+      </customer>
+      <customer id=\"customer3\">
+        <name>Jonny</name>
+        <contractStartDate>1286110922</contractStartDate>
+      </customer>
+    </customers>
+    "
+  }
+}
