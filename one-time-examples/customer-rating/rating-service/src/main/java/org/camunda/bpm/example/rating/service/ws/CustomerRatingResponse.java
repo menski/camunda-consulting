@@ -10,9 +10,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.camunda.bpm.example.rating.service;
-
-import java.util.Date;
+package org.camunda.bpm.example.rating.service.ws;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -21,22 +19,30 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  */
 @XmlRootElement
-public class CustomerRatingRequest {
+public class CustomerRatingResponse {
 
-  protected Date customerSince;
   protected String customerId;
+  protected float ratingScore;
 
-  public Date getCustomerSince() {
-    return customerSince;
+  public CustomerRatingResponse() {
+    // default constructor required by JAX-B
   }
-  public void setCustomerSince(Date customerSince) {
-    this.customerSince = customerSince;
+
+  public CustomerRatingResponse(String customerId, float ratingScore) {
+    this.customerId = customerId;
+    this.ratingScore = ratingScore;
   }
+
   public String getCustomerId() {
     return customerId;
   }
   public void setCustomerId(String customerId) {
     this.customerId = customerId;
   }
-
+  public float getRatingScore() {
+    return ratingScore;
+  }
+  public void setRatingScore(float ratingScore) {
+    this.ratingScore = ratingScore;
+  }
 }
