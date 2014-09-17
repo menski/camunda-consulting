@@ -1,4 +1,0 @@
-{
-  "customerId": "${lowestCustomerId}",
-  "rating": ${lowestRating}
-}

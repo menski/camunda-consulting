@@ -14,20 +14,25 @@
 
     <serviceTask id="get-customer-rating" name="Get Customer Rating (SOAP)">
       <extensionElements>
+
         <camunda:connector>
           <camunda:connectorId>soap-http-connector</camunda:connectorId>
           <camunda:inputOutput>
+
             <camunda:inputParameter name="endpointUrl">
               http://localhost:8080/rating-service-1.0.0-SNAPSHOT/CustomerRatingService
             </camunda:inputParameter>
+
             <camunda:inputParameter name="headers">
-              <map>
-                <entry key="Content-Type">application/soap+xml;charset=UTF-8</entry>
-              </map>
+              <camunda:map>
+                <camunda:entry key="Content-Type">application/soap+xml;charset=UTF-8</camunda:entry>
+              </camunda:map>
             </camunda:inputParameter>
+
             <camunda:inputParameter name="soapEnvelope">
               <camunda:script scriptFormat="freemarker" resource="deployment://soapEnvelope.ftl" />
             </camunda:inputParameter>
+
             <camunda:outputParameter name="customerRatings">
               <camunda:script scriptFormat="groovy" resource="deployment://parseRating.groovy" />
             </camunda:outputParameter>
@@ -46,6 +51,7 @@
             </camunda:script>
           </camunda:inputParameter>
         </camunda:inputOutput>
+
       </extensionElements>
     </serviceTask>
 
@@ -66,7 +72,6 @@
     <sequenceFlow id="flow5" name="No" sourceRef="gateway2" targetRef="gateway1">
       <conditionExpression xsi:type="tFormalExpression" language="groovy">
         <![CDATA[
-          println(currentCustomerIdx)
           currentCustomerIdx < customerCount
         ]]>
       </conditionExpression>
@@ -82,6 +87,7 @@
 
     <serviceTask id="save-customer-ratings" name="Save Customer Ratings (REST)">
       <extensionElements>
+
         <camunda:connector>
           <camunda:connectorId>rest-http-connector</camunda:connectorId>
           <camunda:inputOutput>
@@ -102,6 +108,7 @@
             </camunda:outputParameter>
           </camunda:inputOutput>
         </camunda:connector>
+
       </extensionElements>
     </serviceTask>
 
