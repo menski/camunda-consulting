@@ -1,48 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd" id="_IzucQDzUEeS6DsogJKn5xA" exporter="camunda modeler" exporterVersion="2.6.0" targetNamespace="http://activiti.org/bpmn">
-  <bpmn2:process id="customer-rating" name="Customer Rating" isExecutable="true">
-    <bpmn2:startEvent id="start" name="Customer List &#xA;Received">
-      <bpmn2:outgoing>flow1</bpmn2:outgoing>
-    </bpmn2:startEvent>
-    <bpmn2:scriptTask id="calculate-cutomer-count" name="Calculate Customer Count">
-      <bpmn2:incoming>flow1</bpmn2:incoming>
-      <bpmn2:outgoing>flow2</bpmn2:outgoing>
-    </bpmn2:scriptTask>
-    <bpmn2:sequenceFlow id="flow1" name="" sourceRef="start" targetRef="calculate-cutomer-count"/>
-    <bpmn2:exclusiveGateway id="gateway1">
-      <bpmn2:incoming>flow2</bpmn2:incoming>
-      <bpmn2:incoming>flow5</bpmn2:incoming>
-      <bpmn2:outgoing>flow3</bpmn2:outgoing>
-    </bpmn2:exclusiveGateway>
-    <bpmn2:sequenceFlow id="flow2" name="" sourceRef="calculate-cutomer-count" targetRef="gateway1"/>
-    <bpmn2:serviceTask id="get-customer-rating" name="Get Customer Rating (SOAP)">
-      <bpmn2:incoming>flow3</bpmn2:incoming>
-      <bpmn2:outgoing>flow4</bpmn2:outgoing>
-    </bpmn2:serviceTask>
-    <bpmn2:sequenceFlow id="flow3" name="" sourceRef="gateway1" targetRef="get-customer-rating"/>
-    <bpmn2:exclusiveGateway id="gateway2" name="All customer rated?">
-      <bpmn2:incoming>flow4</bpmn2:incoming>
-      <bpmn2:outgoing>flow5</bpmn2:outgoing>
-      <bpmn2:outgoing>flow6</bpmn2:outgoing>
-    </bpmn2:exclusiveGateway>
-    <bpmn2:sequenceFlow id="flow4" name="" sourceRef="get-customer-rating" targetRef="gateway2"/>
-    <bpmn2:sequenceFlow id="flow5" name="No" sourceRef="gateway2" targetRef="gateway1"/>
-    <bpmn2:sequenceFlow id="flow6" name="Yes" sourceRef="gateway2" targetRef="save-lowest-rated-customer"/>
-    <bpmn2:serviceTask id="save-lowest-rated-customer" name="Save Lowest Rated Customer (REST)">
-      <bpmn2:incoming>flow6</bpmn2:incoming>
-      <bpmn2:outgoing>flow7</bpmn2:outgoing>
-    </bpmn2:serviceTask>
-    <bpmn2:endEvent id="end" name="Customer Rating&#xA;Finished">
-      <bpmn2:incoming>flow7</bpmn2:incoming>
-    </bpmn2:endEvent>
-    <bpmn2:sequenceFlow id="flow7" name="" sourceRef="save-lowest-rated-customer" targetRef="end"/>
-  </bpmn2:process>
+<definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd" id="_IzucQDzUEeS6DsogJKn5xA" xmlns:camunda="http://activiti.org/bpmn" exporter="camunda modeler" exporterVersion="2.6.0" targetNamespace="http://activiti.org/bpmn">
+  <process id="customer-rating" name="Customer Rating" isExecutable="true">
+
+    <startEvent id="start" name="Customer List &#xA;Received" />
+
+    <scriptTask id="calculate-customer-count" name="Calculate Customer Count" />
+
+    <sequenceFlow id="flow1" name="" sourceRef="start" targetRef="calculate-customer-count" />
+
+    <exclusiveGateway id="gateway1" />
+
+    <sequenceFlow id="flow2" name="" sourceRef="calculate-customer-count" targetRef="gateway1" />
+
+    <serviceTask id="get-customer-rating" name="Get Customer Rating (SOAP)" />
+
+    <sequenceFlow id="flow3" name="" sourceRef="gateway1" targetRef="get-customer-rating" />
+
+    <exclusiveGateway id="gateway2" name="All customer rated?" />
+
+    <sequenceFlow id="flow4" name="" sourceRef="get-customer-rating" targetRef="gateway2" />
+
+    <sequenceFlow id="flow5" name="No" sourceRef="gateway2" targetRef="gateway1" />
+
+    <sequenceFlow id="flow6" name="Yes" sourceRef="gateway2" targetRef="save-lowest-rated-customer" />
+
+    <serviceTask id="save-lowest-rated-customer" name="Save Lowest Rated Customer (REST)" />
+
+    <sequenceFlow id="flow7" name="" sourceRef="save-lowest-rated-customer" targetRef="end" />
+
+    <endEvent id="end" name="Customer Rating&#xA;Finished" />
+  </process>
+
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="customer-rating">
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_10" bpmnElement="start">
         <dc:Bounds height="36.0" width="36.0" x="249.0" y="143.0"/>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="_BPMNShape_ScriptTask_2" bpmnElement="calculate-cutomer-count">
+      <bpmndi:BPMNShape id="_BPMNShape_ScriptTask_2" bpmnElement="calculate-customer-count">
         <dc:Bounds height="80.0" width="100.0" x="335.0" y="121.0"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_1" bpmnElement="flow1" sourceElement="_BPMNShape_StartEvent_10" targetElement="_BPMNShape_ScriptTask_2">
@@ -98,4 +92,4 @@
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
-</bpmn2:definitions>
+</definitions>
